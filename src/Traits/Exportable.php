@@ -2,16 +2,13 @@
 
 namespace PhpDominicana\LaravelModelExport\Traits;
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Support\Facades\Storage;
-
 trait Exportable
 {
-    public static function exportToCsv(string $filePath = null)
+    public static function exportToCsv(?string $filePath = null): string
     {
         $model = new static;
 
-        $filePath = $filePath ?: 'exports/' . class_basename($model) . '_' . now()->timestamp . '.csv';
+        $filePath = $filePath !== null && $filePath !== '' && $filePath !== '0' ? $filePath : 'exports/'.class_basename($model).'_'.now()->timestamp.'.csv';
 
         $data = static::all();
         if ($data->isEmpty()) {

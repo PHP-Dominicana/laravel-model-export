@@ -7,13 +7,13 @@ use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class LaravelModelExporterServiceProvider extends BaseServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
         // Load routes, views, migrations, etc.
-        Log::info("YourPackage booted!");
+        Log::info('YourPackage booted!');
     }
 
-    public function register()
+    public function register(): void
     {
         // Bind classes or services
     }
