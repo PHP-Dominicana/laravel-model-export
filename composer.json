@@ -1,0 +1,20 @@
+{
+    "name": "php-dominicana/laravel-model-export",
+    "description": "This is a simple package to export model to csv, json",
+    "type": "laravel-package",
+    "require": {
+        "illuminate/support": "^12.18"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PhpDominicana\\LaravelModelExport\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Fermin",
+            "email": "masterfermin02@gmail.com"
+        }
+    ]
+}
