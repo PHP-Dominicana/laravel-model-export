@@ -3,7 +3,9 @@
     "description": "This is a simple package to export model to csv, json",
     "type": "laravel-package",
     "require": {
-        "illuminate/support": "^12.18"
+        "illuminate/support": "^12.18",
+        "spatie/simple-excel": "^3.7",
+        "spatie/temporary-directory": "^2.3"
     },
     "license": "MIT",
     "autoload": {
@@ -30,7 +32,8 @@
         "rector/rector": "^2.0",
         "pestphp/pest": "^3.8",
         "orchestra/testbench": "*",
-        "larastan/larastan": "^3.0"
+        "larastan/larastan": "^3.0",
+        "spatie/phpunit-snapshot-assertions": "^5.2"
     },
     "scripts": {
         "lint": "pint",
