@@ -26,36 +26,34 @@ User::exportToExcel(); // uses default filename and $exportable columns
 
 ### Export filtered data via query
 
-``
+```
 User::where('active', true)
     ->orderBy('name')
     ->exportToExcel(); // exports only active users
-``
+```
 
 ### Export to custom path
 
-``
+```
 User::exportToExcel(storage_path('exports/users.csv'));
-``
+```
 
-📁 File Output
-Files are exported to /storage/app by default unless a custom path is provided.
+### 📁 File Output
+- Files are exported to /storage/app by default unless a custom path is provided.
 
-Filenames follow this format:
-export_ModelName_TIMESTAMP.csv
+- Filenames follow this format:
+  export_ModelName_TIMESTAMP.csv
 
 ### Export to browser
 
-``
+```
 User::streamDownload();
-``
+```
 
 ### 🧠 How It Works
-- The Exportable trait adds a static exportToCsv() method for convenience.
+- The Exportable trait adds a static exportToExcel() method for convenience.
 
-- A macro is registered on Eloquent\Builder so that you can chain ->exportToCsv() on queries.
-
-- Columns are read from the $exportable property on the model.
+- A macro is registered on Eloquent\Builder so that you can chain ->exportToExcel() on queries.
 
 - Under the hood, Spatie’s SimpleExcelWriter handles the CSV generation.
 
