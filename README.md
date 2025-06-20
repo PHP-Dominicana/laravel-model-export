@@ -1,12 +1,11 @@
 # laravel-model-export
 
-A lightweight Laravel package to export Eloquent model data to CSV, with support for low-memory, lazy exports and a clean API via an `Exportable` trait and query macro.
+A lightweight Laravel package to export Eloquent model data to CSV, excel, with support for low-memory, lazy exports and a clean API via an `Exportable` trait and query macro.
 
 ## 📦 Features
 
 - Export model data to CSV using a simple method call
 - Export via query chaining (`User::where(...)->exportToCsv()`)
-- Automatically uses the model's `$exportable` property
 - Low memory usage via `lazyById()`
 - Customizable export paths
 
@@ -16,12 +15,6 @@ A lightweight Laravel package to export Eloquent model data to CSV, with support
 
 ```bash
 composer require your-vendor/laravel-exportable
-```
-
-If you're using Laravel <10, you may need to manually register the service provider in config/app.php:
-
-```bash
-YourVendor\Exportable\ExportableServiceProvider::class,
 ```
 
 ### 🛠 Usage
