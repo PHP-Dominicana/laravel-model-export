@@ -11,7 +11,7 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         // Load routes, views, migrations, etc.
-        Builder::macro('exportToExcel', function (?string $path = null) {
+        Builder::macro('exportToExcel', function (?string $path = null): string {
             /** @var \Illuminate\Database\Eloquent\Builder $this */
             $model = $this->getModel();
             $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');
@@ -27,7 +27,7 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
             return $path;
         });
 
-        Builder::macro('streamDownload', function (?string $path = null) {
+        Builder::macro('streamDownload', function (?string $path = null): void {
             /** @var \Illuminate\Database\Eloquent\Builder $this */
             $model = $this->getModel();
             $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');

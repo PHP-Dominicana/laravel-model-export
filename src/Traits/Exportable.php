@@ -2,9 +2,6 @@
 
 namespace PhpDominicana\LaravelModelExport\Traits;
 
-use Illuminate\Support\Facades\Log;
-use Spatie\SimpleExcel\SimpleExcelWriter;
-
 trait Exportable
 {
     public static function exportToExcel(?string $filePath = null): string
