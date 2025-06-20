@@ -56,10 +56,9 @@
         "test:refactor": "rector --dry-run",
         "test": [
             "@clear",
-            "@test:unit",
             "@test:lint",
             "@test:refactor",
-            "@php vendor/bin/pest"
+            "@test:unit"
         ]
     },
     "config": {
