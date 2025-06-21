@@ -13,7 +13,7 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
     {
         // Load routes, views, migrations, etc.
         Builder::macro('exportToExcel', function (?string $path = null): string {
-            /** @var \Illuminate\Database\Eloquent\Builder $this */
+            /** @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model $this */
             $model = $this->getModel();
             $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');
 
@@ -29,7 +29,7 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
         });
 
         Builder::macro('exportToJson', function (?string $path = null): string {
-            /** @var \Illuminate\Database\Eloquent\Builder $this */
+            /** @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model $this */
             $model = $this->getModel();
             $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');
 
@@ -45,7 +45,7 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
         });
 
         Builder::macro('streamDownload', function (?string $path = null): void {
-            /** @var \Illuminate\Database\Eloquent\Builder $this */
+            /** @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model $this */
             $model = $this->getModel();
             $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');
 

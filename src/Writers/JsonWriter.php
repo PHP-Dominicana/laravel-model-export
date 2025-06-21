@@ -14,6 +14,13 @@ final class JsonWriter
         $this->stream->fwrite("[\n");
     }
 
+    /**
+     * @template TKey of array-key
+     *
+     * @param  array<TKey,mixed>|object  $data
+     *
+     * @throws \JsonException
+     */
     public function write(array|object $data): void
     {
         if (! $this->first) {

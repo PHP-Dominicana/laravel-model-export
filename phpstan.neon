@@ -8,7 +8,7 @@ parameters:
         - src/
 
     # Level 10 is the highest level
-    level: 5
+    level: 10
 
 #    ignoreErrors:
 #        - '#PHPDoc tag @var#'
