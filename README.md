@@ -50,6 +50,12 @@ User::exportToExcel(storage_path('exports/users.csv'));
 User::streamDownload();
 ```
 
+### Export to JSON
+
+```
+User::exportToJson();
+```
+
 ### 🧠 How It Works
 - The Exportable trait adds a static exportToExcel() method for convenience.
 
