@@ -13,4 +13,9 @@ trait Exportable
     {
         static::query()->streamDownload($filePath);
     }
+
+    public static function exportToJson(?string $filePath = null): string
+    {
+        return static::query()->exportToJson($filePath);
+    }
 }

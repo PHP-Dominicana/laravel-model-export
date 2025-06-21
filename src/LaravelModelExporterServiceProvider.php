@@ -4,6 +4,7 @@ namespace PhpDominicana\LaravelModelExport;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use PhpDominicana\LaravelModelExport\Writers\SimpleJsonWriter;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class LaravelModelExporterServiceProvider extends BaseServiceProvider
@@ -20,6 +21,22 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
 
             $this->lazyById()->each(function ($row) use ($writer): void {
                 $writer->addRow($row->toArray());
+            });
+
+            $writer->close();
+
+            return $path;
+        });
+
+        Builder::macro('exportToJson', function (?string $path = null): string {
+            /** @var \Illuminate\Database\Eloquent\Builder $this */
+            $model = $this->getModel();
+            $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');
+
+            $writer = SimpleJsonWriter::create($path);
+
+            $this->lazyById()->each(function ($row) use ($writer): void {
+                $writer->write($row->toArray());
             });
 
             $writer->close();
