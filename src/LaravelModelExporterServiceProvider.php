@@ -50,13 +50,12 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
             $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');
 
             $writer = SimpleExcelWriter::streamDownload($path);
-
-            $this->lazyById()->chunk(1000, function ($items) use ($writer): void {
-                foreach ($items as $item) {
-                    $writer->addRow($item->toArray());
-                }
-                flush(); // Flush the buffer every chunk
-            });
+            $this->lazyById()
+                ->chunk(1000)
+                ->each(function ($chunk) use ($writer): void {
+                    $writer->addRows($chunk->all());
+                    flush(); // Flush the buffer every 1000 rows
+                });
 
             $writer->toBrowser();
         });

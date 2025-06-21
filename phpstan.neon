@@ -13,5 +13,6 @@ parameters:
 #    ignoreErrors:
 #        - '#PHPDoc tag @var#'
 #
-#    excludePaths:
+    excludePaths:
+        - src/Traits/Exportable.php
 #        - ./*/*/FileToBeExcluded.php

@@ -2,7 +2,7 @@
 
 namespace PhpDominicana\LaravelModelExport\Writers;
 
-class SimpleJsonWriter
+final class SimpleJsonWriter
 {
     public static function create(string $path): JsonWriter
     {
