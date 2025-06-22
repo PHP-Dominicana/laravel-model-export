@@ -4,6 +4,7 @@ namespace PhpDominicana\LaravelModelExport;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
+use PhpDominicana\LaravelModelExport\Services\ModelExport;
 use PhpDominicana\LaravelModelExport\Writers\SimpleJsonWriter;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 
@@ -12,6 +13,13 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
     public function boot(): void
     {
         // Load routes, views, migrations, etc.
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravel-model-export');
+
+        // Optionally publish the view so users can override it
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-model-export'),
+        ], 'laravel-model-export-views');
+
         Builder::macro('exportToExcel', function (?string $path = null): string {
             /** @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model $this */
             $model = $this->getModel();
@@ -42,6 +50,16 @@ class LaravelModelExporterServiceProvider extends BaseServiceProvider
             $writer->close();
 
             return $path;
+        });
+
+        Builder::macro('exportToPdf', function (?string $path = null): mixed {
+            /** @var \Illuminate\Database\Eloquent\Builder|\Illuminate\Database\Eloquent\Model $this */
+            $model = $this->getModel();
+            $path ??= storage_path('app/export_'.class_basename($model).'_'.now()->timestamp.'.csv');
+
+            $export = ModelExport::from($this->lazyById());
+
+            return $export->toPdf($path);
         });
 
         Builder::macro('streamDownload', function (?string $path = null): void {

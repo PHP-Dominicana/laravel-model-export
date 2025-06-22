@@ -3,6 +3,7 @@ laravel: '@testbench'
 providers:
   - PhpDominicana\LaravelModelExport\LaravelModelExporterServiceProvider
   - Workbench\App\Providers\WorkbenchServiceProvider
+  - Barryvdh\DomPDF\ServiceProvider
 
 migrations:
   - workbench/database/migrations

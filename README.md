@@ -56,6 +56,20 @@ User::streamDownload();
 User::exportToJson();
 ```
 
+### Export to PDF
+
+```
+User::exportToPDF();
+```
+
+###  Customize the PDF View (Optional)
+To let users override your default PDF view, instruct them to publish it:
+
+```
+php artisan vendor:publish --tag=model-export-views
+```
+
+
 ### 🧠 How It Works
 - The Exportable trait adds a static exportToExcel() method for convenience.
 

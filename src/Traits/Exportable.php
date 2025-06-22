@@ -18,4 +18,9 @@ trait Exportable
     {
         return static::query()->exportToJson($filePath);
     }
+
+    public static function exportToPdf(?string $filePath = null)
+    {
+        return static::query()->exportToPdf($filePath);
+    }
 }
